@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dapix | AI Image Generator</title>
+
+    <!-- Static CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Dancing+Script:wght@400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://media.discordapp.net/attachments/1096468824859095142/1365679491049062400/Screenshot_2025-04-26_184356.png?ex=680e2fa3&is=680cde23&hm=28b3d80206a934121a81be08f31f5bfc0867c60decc5ff15f19dd7c1083bb5c8&=&format=webp&quality=lossless&width=550&height=481" type="image/png">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h2>Dapix</h2>
+        </div>
+        <nav class="topbar">
+            <div class="theme-toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fas fa-robot"></i> <span>Capabilities</span></button>
+                <div class="dropdown-content">
+                    <a href="#"><i class="fas fa-comments"></i> Image Generation</a>
+                    <a href="#"><i class="fas fa-magic"></i> Style Transfer</a>
+                    <a href="#"><i class="fas fa-paint-brush"></i> Creative Tools</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fas fa-cube"></i> <span>Products</span></button>
+                <div class="dropdown-content">
+                    <a href="https://daphinix.vercel.app/" target="_blank"><i class="fas fa-star"></i> Daphinix</a>
+                    <a href="#"><i class="fas fa-image"></i> Dapix AI image generator!</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <h1 class="wel">AI Image Generator</h1>
+            <p class="tagline">Create stunning images using the power of AI</p>
+        </div>
+
+        <div class="app-container">
+            <div class="input-section">
+                <h2>Create your masterpiece</h2>
+                <div class="prompt-input">
+                    <textarea id="promptInput" placeholder="Describe the image you want to create..." rows="3" oninput="autoGrowTextBox(this)"></textarea>
+                    <button id="generateBtn" onclick="generateImage()">
+                        <div class="button-content">
+                            <span class="button-text">Generate Image</span>
+                            <span class="button-icon"><i class="fas fa-wand-magic-sparkles"></i></span>
+                        </div>
+                        <div class="stars"></div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="placeholderContainer" class="placeholder-container">
+                <div class="placeholder-content">
+                    <i class="fas fa-image placeholder-icon"></i>
+                    <h3>Your image will be generated here</h3>
+                    <p>Enter a detailed prompt above to create your AI image</p>
+                </div>
+            </div>
+
+            <div id="loadingIndicator" class="loading-container hidden">
+                <div class="spinner"></div>
+                <p>Generating your image...</p>
+            </div>
+
+            <div id="resultContainer" class="result-container hidden">
+                <div id="imageWrap" class="image-wrap">
+                    <div id="imageViewer"></div>
+                </div>
+                <div class="image-details">
+                    <p id="promptText"></p>
+                    <button onclick="downloadImage()" class="download-btn"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Dapix</h3>
+                <p>Creating beautiful AI images</p>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social-icons">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dapix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
